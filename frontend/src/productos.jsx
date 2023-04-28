@@ -10,12 +10,14 @@ import {
   InputAdornment,
   InputLabel,
   Modal,
+  Snackbar,
   TextField,
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import Backdrop from "@mui/material/Backdrop";
+import axios from "axios";
 
 function NuevoProducto({ open, handleOpen }) {
   const [producto, setProducto] = useState({
@@ -27,7 +29,34 @@ function NuevoProducto({ open, handleOpen }) {
     category: "",
     numberUnits: "",
   });
+  const [message, setMessage] = useState({state: false, message:"producto añadido con exito!"});
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    await axios({
+      method: "post",
+      url: "http://127.0.0.1:8000/products/",
+      data: producto,
+    })
+      .then(async function (responseUser) {
+        console.log(responseUser.data);
+        setProducto({
+          name: "",
+          description: "",
+          price: 0,
+          manufacturer: "",
+          weight: "",
+          category: "",
+          numberUnits: "",
+        });
+        setMessage({...message, state: true})
+      })
+      .catch(function (error) {
+        setMessage({state: true, message: "error!" })
+        console.log(error);
+      });
+  };
   return (
+    <>
     <Modal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
@@ -45,7 +74,6 @@ function NuevoProducto({ open, handleOpen }) {
         <Box
           sx={{
             position: "absolute",
-
             minWidth: 400,
             maxWidth: "50%",
             top: "50%",
@@ -93,7 +121,7 @@ function NuevoProducto({ open, handleOpen }) {
                   borderRadius: 7,
                   textTransform: "initial",
                 }}
-                onClick={handleOpen}
+                onClick={submitHandler}
               >
                 <AddIcon sx={{ mr: 0.5 }} />
                 Crear
@@ -111,6 +139,9 @@ function NuevoProducto({ open, handleOpen }) {
                 label="Nombre del Producto"
                 type="text"
                 variant="standard"
+                onChange={(e) =>
+                  setProducto({ ...producto, name: e.target.value })
+                }
                 value={producto.name}
               />
               <FormControl variant="standard">
@@ -119,6 +150,9 @@ function NuevoProducto({ open, handleOpen }) {
                 </InputLabel>
                 <Input
                   id="standard-adornment-amount"
+                  onChange={(e) =>
+                    setProducto({ ...producto, price: e.target.value })
+                  }
                   value={producto.price}
                   startAdornment={
                     <InputAdornment position="start">$</InputAdornment>
@@ -130,6 +164,9 @@ function NuevoProducto({ open, handleOpen }) {
                 id="standard-search"
                 label="Fabricante del Producto"
                 type="text"
+                onChange={(e) =>
+                  setProducto({ ...producto, manufacturer: e.target.value })
+                }
                 value={producto.manufacturer}
                 variant="standard"
               />
@@ -138,6 +175,9 @@ function NuevoProducto({ open, handleOpen }) {
                 id="standard-search"
                 label="Descripción del Producto"
                 type="text"
+                onChange={(e) =>
+                  setProducto({ ...producto, description: e.target.value })
+                }
                 value={producto.description}
                 variant="standard"
               />
@@ -148,6 +188,9 @@ function NuevoProducto({ open, handleOpen }) {
                 </InputLabel>
                 <Input
                   id="standard-adornment-weight"
+                  onChange={(e) =>
+                    setProducto({ ...producto, weight: e.target.value })
+                  }
                   value={producto.weight}
                   endAdornment={
                     <InputAdornment position="end">Kg</InputAdornment>
@@ -162,6 +205,9 @@ function NuevoProducto({ open, handleOpen }) {
                 id="standard-search"
                 label="Categoria del Producto"
                 type="text"
+                onChange={(e) =>
+                  setProducto({ ...producto, category: e.target.value })
+                }
                 value={producto.category}
                 variant="standard"
               />
@@ -169,6 +215,9 @@ function NuevoProducto({ open, handleOpen }) {
                 id="standard-search"
                 label="Unidades del Producto"
                 type="number"
+                onChange={(e) =>
+                  setProducto({ ...producto, numberUnits: e.target.value })
+                }
                 value={producto.numberUnits}
                 variant="standard"
               />
@@ -177,6 +226,13 @@ function NuevoProducto({ open, handleOpen }) {
         </Box>
       </Fade>
     </Modal>
+    <Snackbar
+        open={message.state}
+        onClose={()=> setMessage({...message, state: false})}
+        message={message.message}
+      />
+    </>
+    
   );
 }
 

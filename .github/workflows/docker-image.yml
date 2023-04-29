@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - pruebas
+      - main
 
 jobs:
   test:
@@ -19,5 +20,3 @@ jobs:
         node-version: 18
     - name: Create container
       run: docker build -t frontend frontend
-
-

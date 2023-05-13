@@ -261,7 +261,6 @@ export default function Productos() {
             variant="h4"
             noWrap
             component="a"
-            href="#"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "flex" },

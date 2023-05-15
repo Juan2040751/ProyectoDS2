@@ -1,10 +1,19 @@
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-
+import AddIcon from "@mui/icons-material/Add";
 function Facturacion() {
   let date = new Date();
   const [seller, setSeller] = useState({ name: "", id: "" });
   const [client, setClient] = useState({ name: "", id: "" });
+  const [newProduct, setNewProduct] = useState({
+    id: "",
+    name: "",
+    quantity: "",
+    price: 0,
+    total: 0,
+    manufacturer: "",
+  });
+  const [products, setProducts] = useState([]);
   return (
     <Box
       sx={{
@@ -139,6 +148,100 @@ function Facturacion() {
             Nombre: {client.name}
           </h3>
         </Box>
+      </Box>
+      <Box
+        sx={{
+          flexGrow: 1,
+          display: { xs: "flex", md: "flex" },
+          justifyContent: "space-between",
+          padding: "4%",
+          flexWrap: "wrap",
+          gap: "1%",
+        }}
+      >
+        <TextField
+          id="standard-number"
+          size="small"
+          label="ID Producto"
+          type="number"
+          value={newProduct.id}
+          onChange={(e) => setNewProduct({ ...newProduct, id: e.target.value })}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+        />
+        {newProduct.id !== "" ? (
+          <TextField
+            id="standard-number"
+            label="Cantidad a vender"
+            size="small"
+            type="number"
+            value={newProduct.quantity}
+            onChange={(e) =>
+              setNewProduct({ ...newProduct, quantity: e.target.value })
+            }
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          />
+        ) : (
+          <TextField
+            id="standard-number"
+            label="Cantidad a vender"
+            size="small"
+            type="number"
+            value={newProduct.quantity}
+            disabled
+            onChange={(e) =>
+              setNewProduct({ ...newProduct, quantity: e.target.value })
+            }
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          />
+        )}
+        <TextField
+          id="standard-number"
+          label="Nombre del Producto"
+          type="text"
+          size="small"
+          value={newProduct.name}
+          disabled
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+        />
+        <TextField
+          id="standard-number"
+          label="Precio Unitario"
+          size="small"
+          type="number"
+          value={newProduct.price}
+          disabled
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+        />
+        <TextField
+          id="standard-number"
+          label="Precio Total"
+          size="small"
+          type="number"
+          value={newProduct.total}
+          disabled
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+        />
+        <Button color="success" startIcon={<AddIcon />}>
+          Añadir
+        </Button>
       </Box>
     </Box>
   );

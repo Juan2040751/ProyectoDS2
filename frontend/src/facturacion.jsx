@@ -1,6 +1,13 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import React, { useState } from "react";
 function Facturacion() {
   let date = new Date();
   const [seller, setSeller] = useState({ name: "", id: "" });
@@ -8,12 +15,22 @@ function Facturacion() {
   const [newProduct, setNewProduct] = useState({
     id: "",
     name: "",
-    quantity: "",
     price: 0,
-    total: 0,
     manufacturer: "",
+    quantity: "",
+    total: 0,
   });
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([
+    {
+      id: 12,
+      name: "Leche",
+      price: 5000,
+      manufacturer: "Alpina",
+      quantity: 3,
+      total: 15000,
+    },
+  ]);
+  const columns = ["Nombre", "Precio", "Fabricante", "Cantidad", "Total"];
   return (
     <Box
       sx={{
@@ -243,6 +260,38 @@ function Facturacion() {
           Añadir
         </Button>
       </Box>
+
+      <Paper sx={{ overflow: "auto", margin: "0px 4%" }}>
+        <TableContainer sx={{ maxHeight: 440 }}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {columns.map((column, index) => (
+                  <TableCell key={index} align={"center"}>
+                    {column}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {products.map((row, index) => {
+                return (
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                    {Object.keys(newProduct).slice(1).map((key) => {
+                      const value = row[key];
+                      return (
+                        <TableCell key={index} align={"center"}>
+                          {value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
     </Box>
   );
 }

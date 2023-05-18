@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1684373831624" clover="3.2.0">
+  <project timestamp="1684373831624" name="All files">
+    <metrics statements="41" coveredstatements="40" conditionals="8" coveredconditionals="5" methods="26" coveredmethods="25" elements="75" coveredelements="70" complexity="0" loc="41" ncloc="41" packages="2" files="3" classes="3"/>
+    <package name="src">
+      <metrics statements="36" coveredstatements="35" conditionals="2" coveredconditionals="2" methods="23" coveredmethods="22"/>
+      <file name="facturacion.jsx" path="D:\Juan Jose Viafara\I\Universidad\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\src\facturacion.jsx">
+        <metrics statements="15" coveredstatements="15" conditionals="2" coveredconditionals="2" methods="9" coveredmethods="9"/>
+        <line num="12" count="16" type="stmt"/>
+        <line num="13" count="16" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="56" count="7" type="stmt"/>
+        <line num="57" count="7" type="stmt"/>
+        <line num="65" count="7" type="stmt"/>
+        <line num="75" count="7" type="stmt"/>
+        <line num="76" count="7" type="stmt"/>
+        <line num="146" count="2" type="stmt"/>
+        <line num="159" count="1" type="stmt"/>
+        <line num="174" count="1" type="stmt"/>
+        <line num="226" count="35" type="stmt"/>
+        <line num="234" count="7" type="stmt"/>
+        <line num="239" count="35" type="stmt"/>
+        <line num="240" count="35" type="stmt"/>
+      </file>
+      <file name="productos.jsx" path="D:\Juan Jose Viafara\I\Universidad\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\src\productos.jsx">
+        <metrics statements="21" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="13"/>
+        <line num="21" count="20" type="stmt"/>
+        <line num="30" count="20" type="stmt"/>
+        <line num="34" count="20" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="48" count="2" type="stmt"/>
+        <line num="58" count="20" type="stmt"/>
+        <line num="142" count="1" type="stmt"/>
+        <line num="153" count="1" type="stmt"/>
+        <line num="166" count="2" type="stmt"/>
+        <line num="176" count="1" type="stmt"/>
+        <line num="190" count="1" type="stmt"/>
+        <line num="206" count="1" type="stmt"/>
+        <line num="215" count="1" type="stmt"/>
+        <line num="229" count="0" type="stmt"/>
+        <line num="237" count="10" type="stmt"/>
+        <line num="238" count="10" type="stmt"/>
+        <line num="239" count="4" type="stmt"/>
+        <line num="241" count="10" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components">
+      <metrics statements="5" coveredstatements="5" conditionals="6" coveredconditionals="3" methods="3" coveredmethods="3"/>
+      <file name="navbar.jsx" path="D:\Juan Jose Viafara\I\Universidad\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\src\components\navbar.jsx">
+        <metrics statements="5" coveredstatements="5" conditionals="6" coveredconditionals="3" methods="3" coveredmethods="3"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="63" count="3" type="stmt"/>
+        <line num="67" count="3" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

@@ -13,6 +13,7 @@ services:
     volumes:
       - ./data/db:/var/lib/postgresql/data
     restart: always
+    
   turbo_frontend:
     build:
       context: ./frontend

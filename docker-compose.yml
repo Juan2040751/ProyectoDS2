@@ -3,7 +3,10 @@ version: "3.9"
 
 services:
   turbo_db:
-    image: postgres:15-alpine
+    image: 'postgres:latest'
+    restart: always
+    volumes:
+      - './postgres_data:/var/lib/postgresql/data'
     ports:
       - "5432:5432"
     environment:
@@ -11,17 +14,16 @@ services:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
 
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
+
   turbo_frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    ports:
-      - "5173:5173"
     restart: always
     volumes:
       - ./frontend:/app
+    ports:
+      - "5173:5173"
     depends_on:
       - turbo_backend
 

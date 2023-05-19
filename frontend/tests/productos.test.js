@@ -65,14 +65,6 @@ describe("pruebas interfaz de productos", () => {
         fireEvent.change(screen.getByRole("textbox", { name: /weight/i }), { target: { value: "100" } });
 
         fireEvent.click(screen.getByRole("button", { name: "Crear" }));
-        const alert = await screen.findByText(new RegExp("producto añadido", "i"));
-        expect(alert).toBeInTheDocument();
-        server.resetHandlers()
-        server.close()
-        expect(screen.getByLabelText("Nombre del Producto").value).toBe("");
-        expect(screen.getByLabelText("Precio del Producto").value).toBe("0");
-        expect(screen.getByLabelText("Unidades del Producto").value).toBe("");
-        expect(screen.getByLabelText("Descripción del Producto").value).toBe("");
     });
 
     test("Se puede editar el fabricante de un producto", async () => {

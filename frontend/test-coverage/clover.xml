@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1684373831624" clover="3.2.0">
-  <project timestamp="1684373831624" name="All files">
-    <metrics statements="41" coveredstatements="40" conditionals="8" coveredconditionals="5" methods="26" coveredmethods="25" elements="75" coveredelements="70" complexity="0" loc="41" ncloc="41" packages="2" files="3" classes="3"/>
+<coverage generated="1684523497795" clover="3.2.0">
+  <project timestamp="1684523497795" name="All files">
+    <metrics statements="41" coveredstatements="39" conditionals="8" coveredconditionals="5" methods="26" coveredmethods="24" elements="75" coveredelements="68" complexity="0" loc="41" ncloc="41" packages="2" files="3" classes="3"/>
     <package name="src">
-      <metrics statements="36" coveredstatements="35" conditionals="2" coveredconditionals="2" methods="23" coveredmethods="22"/>
+      <metrics statements="36" coveredstatements="34" conditionals="2" coveredconditionals="2" methods="23" coveredmethods="21"/>
       <file name="facturacion.jsx" path="D:\Juan Jose Viafara\I\Universidad\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\src\facturacion.jsx">
         <metrics statements="15" coveredstatements="15" conditionals="2" coveredconditionals="2" methods="9" coveredmethods="9"/>
         <line num="12" count="16" type="stmt"/>
@@ -23,16 +23,16 @@
         <line num="240" count="35" type="stmt"/>
       </file>
       <file name="productos.jsx" path="D:\Juan Jose Viafara\I\Universidad\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\src\productos.jsx">
-        <metrics statements="21" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="13"/>
-        <line num="21" count="20" type="stmt"/>
-        <line num="30" count="20" type="stmt"/>
-        <line num="34" count="20" type="stmt"/>
+        <metrics statements="21" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="12"/>
+        <line num="21" count="19" type="stmt"/>
+        <line num="30" count="19" type="stmt"/>
+        <line num="34" count="19" type="stmt"/>
         <line num="35" count="2" type="stmt"/>
         <line num="36" count="2" type="stmt"/>
-        <line num="42" count="1" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
         <line num="45" count="1" type="stmt"/>
-        <line num="48" count="2" type="stmt"/>
-        <line num="58" count="20" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="58" count="19" type="stmt"/>
         <line num="142" count="1" type="stmt"/>
         <line num="153" count="1" type="stmt"/>
         <line num="166" count="2" type="stmt"/>

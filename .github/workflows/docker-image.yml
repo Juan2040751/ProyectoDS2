@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - PDS2-8-Crear-factura
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -42,7 +43,9 @@ jobs:
         run: docker compose up -d
       
       - name: Run tests
-        run: cd frontend && npm install --no-bin-links && npm install -g jest && npm run coverage
+        run: cd frontend && npm install --no-bin-links && npm install -g jest && npm run coverage && npm run sonar
+
+
 
 
       

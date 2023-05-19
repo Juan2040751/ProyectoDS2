@@ -7,7 +7,8 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 function Boxcustom({ person }) {
   const [personO, setPersonO] = useState({ name: "", id: "" });
   return (
@@ -54,6 +55,7 @@ function Boxcustom({ person }) {
 
 function Facturacion() {
   let date = new Date();
+  const [errorEntrada, setErrorEntrada] = useState(false);
   const [newProduct, setNewProduct] = useState({
     id: "",
     name: "",
@@ -72,7 +74,61 @@ function Facturacion() {
       total: 15000,
     },
   ]);
-  const columns = ["Nombre", "Precio", "Fabricante", "Cantidad", "Total"];
+
+  useEffect(() => {
+    const getProduct = async () => {
+      await axios({
+        method: "get",
+        url: "http://127.0.0.1:8000/products/" + newProduct.id + "/",
+      })
+        .then(({ data }) => {
+          const { name, price, manufacturer } = data;
+          setNewProduct({
+            ...newProduct,
+            name: name,
+            price: price,
+            manufacturer: manufacturer,
+            quantity: 1,
+            total: price,
+          });
+          setErrorEntrada(false);
+        })
+        .catch((error) => {
+          setErrorEntrada(true);
+          setNewProduct({
+            ...newProduct,
+            name: "",
+            price: 0,
+            manufacturer: "",
+            quantity: "",
+            total: 0,
+          });
+        });
+    };
+    getProduct();
+  }, [newProduct.id]);
+  const columns = [
+    "Nombre",
+    "Precio unitario",
+    "Fabricante",
+    "Cantidad",
+    "Subtotal",
+  ];
+  const addProduct = (e) => {
+    e.preventDefault();
+    if (newProduct.id !== "" && newProduct.quantity !== "") {
+      setProducts([...products, newProduct]);
+      setNewProduct({
+        ...newProduct,
+        id: "",
+        name: "",
+        price: 0,
+        manufacturer: "",
+        quantity: "",
+        total: 0,
+      });
+    }
+  };
   return (
     <Box
       sx={{
@@ -142,6 +198,7 @@ function Facturacion() {
           size="small"
           label="Id Producto"
           type="number"
+          error={errorEntrada}
           value={newProduct.id}
           onChange={(e) => setNewProduct({ ...newProduct, id: e.target.value })}
           InputLabelProps={{
@@ -154,10 +211,14 @@ function Facturacion() {
             label="Cantidad a vender"
             size="small"
             type="number"
-            value={newProduct.quantity}
             onChange={(e) =>
-              setNewProduct({ ...newProduct, quantity: e.target.value })
+              setNewProduct({
+                ...newProduct,
+                quantity: e.target.value,
+                total: parseInt(e.target.value) * parseInt(newProduct.price),
+              })
             }
+            value={newProduct.quantity}
             InputLabelProps={{
               shrink: true,
             }}
@@ -170,9 +231,6 @@ function Facturacion() {
             type="number"
             value={newProduct.quantity}
             disabled
-            onChange={(e) =>
-              setNewProduct({ ...newProduct, quantity: e.target.value })
-            }
             InputLabelProps={{
               shrink: true,
             }}
@@ -212,7 +270,7 @@ function Facturacion() {
           }}
           variant="outlined"
         />
-        <Button color="success" startIcon={<AddIcon />}>
+        <Button color="success" startIcon={<AddIcon />} onClick={addProduct}>
           Añadir
         </Button>
       </Box>
@@ -220,6 +278,12 @@ function Facturacion() {
       <Paper sx={{ overflow: "auto", margin: "0px 4%" }}>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
+            <caption style={{ textAlign: "end" }}>
+              Total:{" "}
+              {products.reduce((accumulator, object) => {
+                return accumulator + object.total;
+              }, 0)}
+            </caption>
             <TableHead>
               <TableRow>
                 {columns.map((column, index) => (

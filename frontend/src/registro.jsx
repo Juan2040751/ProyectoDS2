@@ -13,6 +13,9 @@ function Register() {
   const handleRegister = (e) => {
     e.preventDefault();
 
+    const csrfToken = 'my_csrf_token';
+    axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+
     axios
       .post("http://localhost:8000/users/register", { username, email, password, confirmation })
       .then((response) => {

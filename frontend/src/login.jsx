@@ -13,6 +13,8 @@ function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
 
+    const csrfToken = 'my_csrf_token';
+    axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
 
     axios
       .post("http://localhost:8000/users/login", { username, password })

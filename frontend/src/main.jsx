@@ -3,14 +3,24 @@ import ReactDOM from "react-dom/client";
 import App from "./app";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Productos from "./productos";
+import Register from "./registro";
+import Login from "./login";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Routes>
-      <Route path="/"
+      <Route
+        path="/"
         element={
           <App>
-            <h1>Hola</h1>
+            <div>
+              <div>
+                <Login />
+              </div>
+              <div>
+                <Register />
+              </div>
+            </div>
           </App>
         }/>
       <Route

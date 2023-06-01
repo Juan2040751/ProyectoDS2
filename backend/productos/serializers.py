@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import *
 
-
 class ProductoSerializer(serializers.ModelSerializer):
     stock = serializers.SerializerMethodField()
     class Meta:
@@ -14,3 +13,5 @@ class ProductoSerializer(serializers.ModelSerializer):
             return "Stock bajo"
         elif obj.numberUnits > 100:
             return "Stock alto"
+
+

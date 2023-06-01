@@ -41,5 +41,3 @@ services:
       DB_PORT: ${DB_PORT}
     ports:
       - "8000:8000"
-
-

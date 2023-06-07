@@ -1,4 +1,4 @@
-FROM python:3.8-slim-buster
+FROM python:3.11-alpine
 
 # Set lang
 ENV LANG C.UTF-8
@@ -8,9 +8,6 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /code
 
 COPY requirements.txt /code/
-RUN apt-get update \
-    && apt-get -y install libpq-dev gcc \
-    && pip install psycopg2
 RUN pip3 install --upgrade pip
 RUN pip install -r requirements.txt
 COPY . /code/

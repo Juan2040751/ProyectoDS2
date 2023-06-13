@@ -1,9 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./app";
-import Productos from "./productos";
 import Facturacion from "./facturacion";
+import Login from "./login";
+import Productos from "./productos";
+import Register from "./registro";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -12,7 +14,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         path="/"
         element={
           <App>
-            <Navigate replace to="/facturacion" />
+            <div>
+              <div>
+                <Login />
+              </div>
+              <div>
+                <Register />
+              </div>
+            </div>
           </App>
         }
       />

@@ -8,7 +8,7 @@ class ProductoSerializer(serializers.ModelSerializer):
         fields = ('id','name','description', 'price', 'manufacturer', 'weight', 'category', 'numberUnits', 'stock')
     def get_stock(self, obj):
         if obj.numberUnits == 0:
-            return "sin Stock"
+            return "Sin Stock"
         elif obj.numberUnits < 100:
             return "Stock bajo"
         elif obj.numberUnits > 100:

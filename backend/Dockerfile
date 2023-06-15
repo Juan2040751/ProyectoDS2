@@ -13,7 +13,6 @@ RUN apt-get update \
     && pip install psycopg2
 RUN pip3 install --upgrade pip
 RUN pip install -r requirements.txt
-RUN build.sh
 COPY . /code/
 EXPOSE 8000
 CMD ["sh", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]

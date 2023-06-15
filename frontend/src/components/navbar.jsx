@@ -5,9 +5,15 @@ import Container from "@mui/material/Container";
 import Slide from "@mui/material/Slide";
 import Toolbar from "@mui/material/Toolbar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
+import { Link } from "react-router-dom"; // Importar el componente Link de React Router
 import React from "react";
+
 function NavbarApp({ window }) {
-  const pages = ["Productos", "Pricing", "Blog"];
+  const pages = [
+    { name: "Productos", path: "/productos" },
+    { name: "Pricing", path: "/pricing" },
+    { name: "Blog", path: "/blog" },
+  ];
 
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
@@ -35,8 +41,8 @@ function NavbarApp({ window }) {
               <Typography
                 variant="h4"
                 noWrap
-                component="a"
-                href="/"
+                component={Link} // Utilizar el componente Link para el logotipo
+                to="/"
                 sx={{
                   mr: 2,
                   display: { xs: "flex", md: "flex" },
@@ -59,7 +65,9 @@ function NavbarApp({ window }) {
             >
               {pages.map((page) => (
                 <Button
-                  key={page}
+                  key={page.name}
+                  component={Link} // Utilizar el componente Link para los botones de navegación
+                  to={page.path}
                   sx={{
                     my: 2,
                     color: "black",
@@ -68,10 +76,9 @@ function NavbarApp({ window }) {
                     fontWeight: "medium",
                   }}
                 >
-                  {page}
+                  {page.name}
                 </Button>
               ))}
-              
             </Box>
           </Toolbar>
         </Container>
@@ -81,3 +88,4 @@ function NavbarApp({ window }) {
 }
 
 export default NavbarApp;
+

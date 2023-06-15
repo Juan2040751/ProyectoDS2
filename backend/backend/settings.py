@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
@@ -84,6 +84,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
 """
 DATABASES = {
 'default': {
@@ -95,15 +96,10 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT'),
     }
 }
-"""
+
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    "default":dj_database_url.parse(os.environ.get("DATABASE_URL"))
-}
-
-"""
 DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
@@ -113,7 +109,7 @@ DATABASES = {
 }
 """
 
-"""
+
 DATABASES = {
     'default': {}
 }
@@ -134,7 +130,7 @@ else:
         default='postgresql://postgres:postgres@localhost:5432/turbo_db',
         conn_max_age=600
     )
-"""
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 

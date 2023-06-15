@@ -99,17 +99,16 @@ DATABASES = {
 """
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
-        default='postgresql://postgres:postgres@localhost/postgres',
+        default='postgresql://postgres:postgres@localhost:5432/tienda',
         conn_max_age=600
     )
 }
-
-
 """
+
 DATABASES = {
     'default': {}
 }
@@ -127,10 +126,11 @@ if os.environ.get('DB_NAME'):
 else:
     # Configuración 2: Utilizando dj_database_url.config()
     DATABASES['default'] = dj_database_url.config(
-        default='postgresql://postgres:postgres@localhost:5432/postgres',
+        default='postgresql://postgres:postgres@localhost:5432/tienda',
         conn_max_age=600
     )
-"""
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 

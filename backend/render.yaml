@@ -1,18 +1,18 @@
 databases:
-  - name: mysite
-    databaseName: mysite
-    user: mysite
+  - name: tienda
+    databaseName: dbtienda
+    user: dbtienda_user
 
 services:
   - type: web
-    name: mysite
+    name: tienda
     runtime: python
     buildCommand: "./build.sh"
     startCommand: "gunicorn backend.wsgi:application"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mysite
+          name: tienda
           property: connectionString
       - key: SECRET_KEY
         generateValue: true

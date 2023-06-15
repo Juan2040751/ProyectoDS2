@@ -1,14 +1,8 @@
-databases:
-  - name: mysite
-    databaseName: mysite
-    user: mysite
-
 services:
-  - type: web
-    name: mysite
-    runtime: python
-    buildCommand: "docker build -t backend-image ."
-    startCommand: "docker run -p 8000:8000 backend-image"
+  - name: backend
+    type: web
+    buildCommand: "docker build -t backend ."
+    startCommand: "docker run -p 8000:8000 backend"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -18,3 +12,6 @@ services:
         generateValue: true
       - key: WEB_CONCURRENCY
         value: 4
+databases:
+  - name: mysite
+    type: postgres

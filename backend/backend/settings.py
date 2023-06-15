@@ -127,7 +127,7 @@ if os.environ.get('DB_NAME'):
 else:
     # Configuración 2: Utilizando dj_database_url.config()
     DATABASES['default'] = dj_database_url.config(
-        default='postgresql://postgres:postgres@localhost:5432/turbo_db',
+        default='postgresql://postgres:postgres@localhost:5432/postgres',
         conn_max_age=600
     )
 

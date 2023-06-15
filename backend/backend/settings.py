@@ -100,13 +100,18 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
+    "default":dj_database_url.parse(os.environ.get("DATABASE_URL"))
+}
+
+"""
+DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
         default='postgresql://postgres:postgres@localhost/postgres',
         conn_max_age=600
     )
 }
-
+"""
 
 """
 DATABASES = {

@@ -94,7 +94,7 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT'),
     }
 }
-
+"""
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -106,8 +106,8 @@ DATABASES = {
     )
 }
 
-"""
 
+"""
 DATABASES = {
     'default': {}
 }
@@ -128,7 +128,7 @@ else:
         default='postgresql://postgres:postgres@localhost:5432/turbo_db',
         conn_max_age=600
     )
-
+"""
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 

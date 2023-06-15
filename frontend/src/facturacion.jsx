@@ -1,5 +1,6 @@
 import AddIcon from "@mui/icons-material/Add";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -9,8 +10,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-function Boxcustom({ person }) {
-  const [personO, setPersonO] = useState({ name: "", id: "" });
+function Boxcustom({ person, personO, setPersonO }) {
   return (
     <Box
       sx={{
@@ -55,6 +55,13 @@ function Boxcustom({ person }) {
 
 function Facturacion() {
   let date = new Date();
+  const [cliente, setCliente] = useState({ id: 0, name: "" });
+  const [vendedor, setVendedor] = useState({
+    id: localStorage.getItem("id") ? localStorage.getItem("id") : "0",
+    name: localStorage.getItem("username")
+      ? localStorage.getItem("username")
+      : "",
+  });
   const [errorEntrada, setErrorEntrada] = useState(false);
   const [newProduct, setNewProduct] = useState({
     id: "",
@@ -63,31 +70,41 @@ function Facturacion() {
     manufacturer: "",
     quantity: "",
     total: 0,
+    weight: 0, 
   });
-  const [products, setProducts] = useState([
-    {
-      id: 12,
-      name: "Leche",
-      price: 5000,
-      manufacturer: "Alpina",
-      quantity: 3,
-      total: 15000,
-    },
-  ]);
+  const [products, setProducts] = useState([]);
+  const createInvoice = async (e) => {
+    e.preventDefault;
+
+    await axios({
+      method: "post",
+      url: "http://127.0.0.1:8000/invoices/",
+      data: {
+        productos: products.map((prod) => {
+          const { id, quantity, weight, manufacturer, name, price } = prod;
+          return { producto: id, cantidad: quantity };
+        }),
+        cliente: cliente.id,
+        vendedor: vendedor.id,
+      },
+    });
+  };
 
   useEffect(() => {
     const getProduct = async () => {
+      if (newProduct.id === "") return true;
       await axios({
         method: "get",
         url: "http://127.0.0.1:8000/products/" + newProduct.id + "/",
       })
         .then(({ data }) => {
-          const { name, price, manufacturer } = data;
+          const { name, price, manufacturer, weight } = data;
           setNewProduct({
             ...newProduct,
             name: name,
             price: price,
             manufacturer: manufacturer,
+            weight: weight,
             quantity: 1,
             total: price,
           });
@@ -181,8 +198,16 @@ function Facturacion() {
           paddingRight: "3%",
         }}
       >
-        <Boxcustom person={"Vendedor"} />
-        <Boxcustom person={"Cliente"} />
+        <Boxcustom
+          person={"Vendedor"}
+          personO={vendedor}
+          setPersonO={setVendedor}
+        />
+        <Boxcustom
+          person={"Cliente"}
+          personO={cliente}
+          setPersonO={setCliente}
+        />
       </Box>
       <Box
         sx={{
@@ -215,7 +240,10 @@ function Facturacion() {
               setNewProduct({
                 ...newProduct,
                 quantity: e.target.value,
-                total: parseInt(e.target.value) * parseInt(newProduct.price),
+                total:
+                  e.target.value !== ""
+                    ? parseInt(e.target.value) * parseInt(newProduct.price)
+                    : newProduct.total,
               })
             }
             value={newProduct.quantity}
@@ -278,12 +306,30 @@ function Facturacion() {
       <Paper sx={{ overflow: "auto", margin: "0px 4%" }}>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
-            <caption style={{ textAlign: "end" }}>
-              Total:{" "}
-              {products.reduce((accumulator, object) => {
-                return accumulator + object.total;
-              }, 0)}
+            <caption
+              style={{
+                textAlign: "end",
+                justifyContent: "flex-end",
+                gap: "10px",
+              }}
+            >
+              <>
+                Total:{" "}
+                {products.reduce((accumulator, object) => {
+                  return accumulator + object.total;
+                }, 0)}
+              </>
+              <Button
+                color="success"
+                variant="contained"
+                endIcon={<SendIcon />}
+                sx={{ marginLeft: "10px" }}
+                onClick={createInvoice}
+              >
+                Crear Factura
+              </Button>
             </caption>
+
             <TableHead>
               <TableRow>
                 {columns.map((column, index) => (
@@ -319,3 +365,5 @@ function Facturacion() {
 }
 
 export default Facturacion;
+
+

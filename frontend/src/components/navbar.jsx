@@ -9,7 +9,7 @@ import React from "react";
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import { NavLink } from "react-router-dom";
 function NavbarApp({ window }) {
-  const pages = ["Facturacion", "Productos", "Clientes"];
+  const pages = ["Facturacion", "Productos"];
 
 
   const trigger = useScrollTrigger({
@@ -79,6 +79,7 @@ function NavbarApp({ window }) {
                   {page}
                 </NavLink>
               ))}
+              
             </Box>
           </Toolbar>
         </Container>

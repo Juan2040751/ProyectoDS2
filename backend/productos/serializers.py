@@ -4,7 +4,7 @@ from .models import *
 class ProductoSerializer(serializers.ModelSerializer):
     stock = serializers.SerializerMethodField()
     class Meta:
-        model = Products
+        model = Producto
         fields = ('id','name','description', 'price', 'manufacturer', 'weight', 'category', 'numberUnits', 'stock')
     def get_stock(self, obj):
         if obj.numberUnits == 0:

@@ -18,7 +18,7 @@ function Register() {
 
     axios
       .post("http://localhost:8000/users/register", { username, email, password, confirmation })
-      .then((response) => {
+      .then(({data}) => {
         navigate("/facturacion");
       })
       .catch((error) => {

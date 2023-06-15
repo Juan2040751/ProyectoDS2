@@ -1,27 +1,34 @@
 from rest_framework import serializers
-from .models import Factura, Cliente, ProductosComprados
-from django.db import transaction
+from .models import Factura, ProductosComprados
+from productos.serializers import ProductoSerializer
+from productos.models import Producto
+import json
 
-class ClienteSerializer(serializers.ModelSerializer):
+
+class ProductSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Cliente
-        fields = ["nombre", "cedula"]
+        model = Producto
+        fields = ("id", "name")
+
 
 class ProductosCompradosSerializer(serializers.ModelSerializer):
+    producto = ProductSerializer(many=False, read_only=True)
+
     class Meta:
         model = ProductosComprados
-        fields = ["factura", "producto", "cantidad"]
+        fields = ["cantidad", "producto"]
+    def get_queryset(self):
+        print(self.data.get(factura))
+        #user = self.request.user
+        return ProductosComprados.objects.filter(factura=self.data.get(factura))
+
 
 class FacturaSerializer(serializers.ModelSerializer):
-    productos = ProductosCompradosSerializer(many=True, read_only=False)
+    productos = serializers.SerializerMethodField()
 
     class Meta:
         model = Factura
-        fields = ("vendedor", "cliente", "productos")
-    
-    def create(self, validated_data):
-        with transaction.atomic():
-            factura = Factura.objects.create(
+        fields = ["vendedor", "fecha", "productos", "id"]
 
-            )
-        return factura
+    def get_productos(self, object):
+        return ProductosComprados.objects.filter(factura=object).values()

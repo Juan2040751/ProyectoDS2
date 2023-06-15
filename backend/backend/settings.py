@@ -94,17 +94,39 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT'),
     }
 }
-"""
+
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
-        default='postgresql://postgres:postgres@localhost/turbo_db',
+        default='postgresql://postgres:postgres@localhost:5432/turbo_db',
         conn_max_age=600
     )
 }
+"""
+
+DATABASES = {
+    'default': {}
+}
+
+# Configuración 1: Utilizando variables de entorno
+if os.environ.get('DB_NAME'):
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
+    }
+else:
+    # Configuración 2: Utilizando dj_database_url.config()
+    DATABASES['default'] = dj_database_url.config(
+        default='postgresql://postgres:postgres@localhost:5432/turbo_db',
+        conn_max_age=600
+    )
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

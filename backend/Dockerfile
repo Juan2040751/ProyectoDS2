@@ -12,7 +12,7 @@ RUN apt-get update \
     && apt-get -y install libpq-dev gcc \
     && pip install psycopg2
 RUN pip3 install --upgrade pip
-RUN pip install -r requirements.txt}
+RUN pip install -r requirements.txt
 RUN build.sh
 COPY . /code/
 EXPOSE 8000

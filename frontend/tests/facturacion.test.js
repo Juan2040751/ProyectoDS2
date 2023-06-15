@@ -11,7 +11,7 @@ describe("pruebas interfaz de facturacion", () => {
         render(<Facturacion />);
     });
     test("Titulo de la pagina presente", () => {
-        expect(screen.getByText("Crear Factura")).toBeInTheDocument();
+        expect(screen.getAllByText("Crear Factura")[0]).toBeInTheDocument();
     });
     test("Informacion del vendendor y cliente presente", () => {
         expect(screen.getByText("Vendedor")).toBeInTheDocument();

@@ -71,6 +71,7 @@ function NavbarApp({ window }) {
                   {page}
                 </Button>
               ))}
+              
             </Box>
           </Toolbar>
         </Container>

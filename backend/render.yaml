@@ -1,17 +1,8 @@
+version: 1
 services:
-  - name: backend
-    type: web
-    buildCommand: "docker build -t backend ."
-    startCommand: "docker run -p 8000:8000 backend"
-    envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: mysite
-          property: connectionString
-      - key: SECRET_KEY
-        generateValue: true
-      - key: WEB_CONCURRENCY
-        value: 4
-databases:
-  - name: mysite
-    type: postgres
+  - name: django
+    env: production
+    buildCommand:
+      - docker build -t $DOCKER_IMAGE_NAME .
+    startCommand:
+      - docker run -p 8000:8000 $DOCKER_IMAGE_NAME

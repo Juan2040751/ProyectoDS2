@@ -79,6 +79,7 @@ function NavbarApp({ window }) {
                   {page}
                 </NavLink>
               ))}
+              
             </Box>
           </Toolbar>
         </Container>

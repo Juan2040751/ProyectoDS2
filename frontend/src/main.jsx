@@ -6,6 +6,8 @@ import Facturacion from "./facturacion";
 import Login from "./login";
 import Productos from "./productos";
 import Register from "./registro";
+import Login from "./login";
+import ListaProductos from "./components/list_products"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -34,10 +36,18 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         }
       />
       <Route
-        path="/facturacion"
+        path="/lista-productos"
         element={
           <App>
-            <Facturacion />
+            < ListaProductos />
+          </App>
+        }
+      />
+      <Route
+        path="/productos/:id"
+        element={
+          <App>
+            < Productos />
           </App>
         }
       />

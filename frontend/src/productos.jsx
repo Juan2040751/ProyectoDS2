@@ -13,9 +13,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import AddIcon from "@mui/icons-material/Add";
 import Backdrop from "@mui/material/Backdrop";
 import axios from "axios";
-import React, { useState } from "react";
+import { updateProduct, getProduct } from "./api/products.api";
 
 export function NuevoProducto({ open, handleOpen }) {
   const [producto, setProducto] = useState({
@@ -31,30 +34,55 @@ export function NuevoProducto({ open, handleOpen }) {
     state: false,
     message: "producto añadido con exito!",
   });
+  const params = useParams();
+  const navigate = useNavigate();
+
   const submitHandler = async (e) => {
     e.preventDefault();
-    await axios({
-      method: "post",
-      url: "http://127.0.0.1:8000/products/",
-      data: producto,
-    })
-      .then(async function (responseUser) {
-        setMessage({ ...message, state: true });
-      })
-      .catch(function (error) {
-        setMessage({ state: true, message: "error!" });
-      });
 
-    setProducto({
-      name: "",
-      description: "",
-      price: 0,
-      manufacturer: "",
-      weight: "",
-      category: "",
-      numberUnits: "",
-    });
+    if (params.id) {
+      await updateProduct(params.id, producto);
+      navigate("/lista-productos/")
+    } else {
+      await axios({
+        method: "post",
+        url: "http://127.0.0.1:8000/products/",
+        data: producto,
+      })
+        .then(async function (responseUser) {
+          console.log(responseUser.data);
+          setProducto({
+            name: "",
+            description: "",
+            price: 0,
+            manufacturer: "",
+            weight: "",
+            category: "",
+            numberUnits: "",
+          });
+          setMessage({ ...message, state: true });
+        })
+        .catch(function (error) {
+          setMessage({ state: true, message: "error!" });
+          console.log(error);
+        });
+    }
   };
+
+  useEffect(() => {
+    async function loadProduct() {
+      if (params.id) {
+        const res = await getProduct(params.id);
+        setProducto(res.data);
+      }
+    }
+    loadProduct();
+  }, []);
+
+  {
+    params.id && (open = true);
+  }
+
   return (
     <>
       <Modal
@@ -97,36 +125,73 @@ export function NuevoProducto({ open, handleOpen }) {
                   paddingRight: "3%",
                 }}
               >
-                <Typography
-                  variant="h4"
-                  noWrap
-                  component="a"
-                  href="#"
-                  sx={{
-                    mr: 0,
-                    display: { xs: "flex", md: "flex" },
-                    fontFamily: "sans-serif",
-                    fontWeight: 700,
-                    fontSize: 25,
-                    color: "black",
-                    textDecoration: "none",
-                  }}
-                >
-                  Nuevo Producto
-                </Typography>
-                <Button
-                  variant="contained"
-                  style={{
-                    backgroundColor: "#00AB55",
-                    borderRadius: 7,
-                    textTransform: "initial",
-                  }}
-                  onClick={submitHandler}
-                >
-                  <AddIcon sx={{ mr: 0.5 }} />
-                  Crear
-                </Button>
+                {params.id ? (
+                  <Typography
+                    variant="h4"
+                    noWrap
+                    component="a"
+                    href="#"
+                    sx={{
+                      mr: 0,
+                      display: { xs: "flex", md: "flex" },
+                      fontFamily: "sans-serif",
+                      fontWeight: 700,
+                      fontSize: 25,
+                      color: "black",
+                      textDecoration: "none",
+                    }}
+                  >
+                    Actualizar Producto
+                  </Typography>
+                ) : (
+                  <Typography
+                    variant="h4"
+                    noWrap
+                    component="a"
+                    href="#"
+                    sx={{
+                      mr: 0,
+                      display: { xs: "flex", md: "flex" },
+                      fontFamily: "sans-serif",
+                      fontWeight: 700,
+                      fontSize: 25,
+                      color: "black",
+                      textDecoration: "none",
+                    }}
+                  >
+                    Nuevo Producto
+                  </Typography>
+                )}
+
+                {params.id ? (
+                  <Button
+                    variant="contained"
+                    style={{
+                      backgroundColor: "orange",
+                      borderRadius: 7,
+                      textTransform: "initial",
+                    }}
+                    onClick={submitHandler}
+                  >
+                    <AddIcon sx={{ mr: 0.5 }} />
+                    Actualizar
+                  </Button>
+                ) : (
+                  <Button
+                    variant="contained"
+                    style={{
+                      backgroundColor: "#00AB55",
+                      borderRadius: 7,
+                      textTransform: "initial",
+                    }}
+                    onClick={submitHandler}
+                  >
+                    <AddIcon sx={{ mr: 0.5 }} />
+                    Crear
+                  </Button>
+                )}
               </Box>
+
               <div
                 style={{
                   display: "flex",
@@ -135,9 +200,11 @@ export function NuevoProducto({ open, handleOpen }) {
                 }}
               >
                 <TextField
+                  id="standard-search"
                   label="Nombre del Producto"
                   type="text"
                   variant="standard"
+                  //defaultValue={producto.name}
                   onChange={(e) =>
                     setProducto({ ...producto, name: e.target.value })
                   }
@@ -160,6 +227,7 @@ export function NuevoProducto({ open, handleOpen }) {
                 </FormControl>
 
                 <TextField
+                  id="standard-search"
                   label="Fabricante del Producto"
                   type="text"
                   onChange={(e) =>
@@ -170,6 +238,7 @@ export function NuevoProducto({ open, handleOpen }) {
                 />
 
                 <TextField
+                  id="standard-search"
                   label="Descripción del Producto"
                   type="text"
                   onChange={(e) =>
@@ -180,12 +249,11 @@ export function NuevoProducto({ open, handleOpen }) {
                 />
 
                 <FormControl variant="standard">
-                  <InputLabel id="standard-weight-helper-text" htmlFor="weight">
+                  <InputLabel id="standard-weight-helper-text">
                     Peso del Producto
                   </InputLabel>
                   <Input
                     id="standard-adornment-weight"
-                    name="weight"
                     onChange={(e) =>
                       setProducto({ ...producto, weight: e.target.value })
                     }
@@ -200,6 +268,7 @@ export function NuevoProducto({ open, handleOpen }) {
                   />
                 </FormControl>
                 <TextField
+                  id="standard-search"
                   label="Categoria del Producto"
                   type="text"
                   onChange={(e) =>
@@ -209,6 +278,7 @@ export function NuevoProducto({ open, handleOpen }) {
                   variant="standard"
                 />
                 <TextField
+                  id="standard-search"
                   label="Unidades del Producto"
                   type="number"
                   onChange={(e) =>
@@ -223,9 +293,8 @@ export function NuevoProducto({ open, handleOpen }) {
         </Fade>
       </Modal>
       <Snackbar
-        role="snackbar"
-        id="snackbar"
         open={message.state}
+        onClose={() => setMessage({ ...message, state: false })}
         onClose={() => setMessage({ ...message, state: false })}
         message={message.message}
       />
@@ -235,6 +304,8 @@ export function NuevoProducto({ open, handleOpen }) {
 
 export default function Productos() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const params = useParams();
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -267,21 +338,40 @@ export default function Productos() {
               color: "black",
               textDecoration: "none",
             }}
+            onClick={() => {
+              navigate("/lista-productos/");
+            }}
           >
             Lista de Productos
           </Typography>
-          <Button
-            variant="contained"
-            style={{
-              backgroundColor: "#00AB55",
-              borderRadius: 7,
-              textTransform: "initial",
-            }}
-            onClick={handleOpen}
-          >
-            <AddIcon sx={{ mr: 0.5 }} />
-            Agregar Producto
-          </Button>
+
+          {params.id ? (
+            <Button
+              variant="contained"
+              style={{
+                backgroundColor: "orange",
+                borderRadius: 7,
+                textTransform: "initial",
+              }}
+              onClick={handleOpen}
+            >
+              <AddIcon sx={{ mr: 0.5 }} />
+              Actualizar Producto
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              style={{
+                backgroundColor: "#00AB55",
+                borderRadius: 7,
+                textTransform: "initial",
+              }}
+              onClick={handleOpen}
+            >
+              <AddIcon sx={{ mr: 0.5 }} />
+              Agregar Producto
+            </Button>
+          )}
         </Box>
       </Box>
       <Box

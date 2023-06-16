@@ -23,7 +23,7 @@ El software cuenta con una interfaz intuitiva y fácil de utilizar, la cuál per
 `$ docker compose build`
 `$ docker compose up`
 
-o bien, el aplicativo se encuentra desplegado en el siguiente enlace:  
+o bien, el aplicativo se encuentra desplegado en el siguiente enlace:  https://proyecto-ds-2.vercel.app/
 
 # Desarrollo
 

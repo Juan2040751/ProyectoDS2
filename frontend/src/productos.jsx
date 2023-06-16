@@ -1,11 +1,10 @@
+import AddIcon from "@mui/icons-material/Add";
 import {
   Box,
   Button,
   Card,
-  CardHeader,
   Fade,
   FormControl,
-  FormHelperText,
   Input,
   InputAdornment,
   InputLabel,
@@ -21,7 +20,7 @@ import Backdrop from "@mui/material/Backdrop";
 import axios from "axios";
 import { updateProduct, getProduct } from "./api/products.api";
 
-function NuevoProducto({ open, handleOpen }) {
+export function NuevoProducto({ open, setOpen, handleOpen }) {
   const [producto, setProducto] = useState({
     name: "",
     description: "",
@@ -81,51 +80,51 @@ function NuevoProducto({ open, handleOpen }) {
   }, []);
 
   {
-    params.id && (open = true);
+    params.id && setOpen(true);
   }
 
   return (
     <>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleOpen}
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-        slotProps={{
-          backdrop: {
-            timeout: 500,
-          },
-        }}
-      >
-        <Fade in={open}>
-          <Box
-            sx={{
-              position: "absolute",
-              minWidth: 400,
-              maxWidth: "50%",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              bgcolor: "transparent",
-            }}
-          >
-            <Card
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={open}
+          onClose={handleOpen}
+          closeAfterTransition
+          slots={{ backdrop: Backdrop }}
+          slotProps={{
+            backdrop: {
+              timeout: 500,
+            },
+          }}
+        >
+          <Fade in={open}>
+            <Box
               sx={{
-                padding: 4,
-                width: "100%",
-                borderRadius: 4,
+                position: "absolute",
+                minWidth: 400,
+                maxWidth: "50%",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                bgcolor: "transparent",
               }}
             >
-              <Box
+              <Card
                 sx={{
-                  flexGrow: 1,
-                  display: { xs: "flex", md: "flex" },
-                  justifyContent: "space-between",
-                  paddingRight: "3%",
+                  padding: 4,
+                  width: "100%",
+                  borderRadius: 4,
                 }}
               >
+                <Box
+                  sx={{
+                    flexGrow: 1,
+                    display: { xs: "flex", md: "flex" },
+                    justifyContent: "space-between",
+                    paddingRight: "3%",
+                  }}
+                >
                 {params.id ? (
                   <Typography
                     variant="h4"
@@ -146,22 +145,22 @@ function NuevoProducto({ open, handleOpen }) {
                   </Typography>
                 ) : (
                   <Typography
-                    variant="h4"
-                    noWrap
-                    component="a"
-                    href="#"
-                    sx={{
-                      mr: 0,
-                      display: { xs: "flex", md: "flex" },
-                      fontFamily: "sans-serif",
-                      fontWeight: 700,
-                      fontSize: 25,
-                      color: "black",
-                      textDecoration: "none",
-                    }}
-                  >
-                    Nuevo Producto
-                  </Typography>
+                        variant="h4"
+                        noWrap
+                        component="a"
+                        href="#"
+                        sx={{
+                          mr: 0,
+                          display: { xs: "flex", md: "flex" },
+                          fontFamily: "sans-serif",
+                          fontWeight: 700,
+                          fontSize: 25,
+                          color: "black",
+                          textDecoration: "none",
+                        }}
+                      >
+                        Nuevo Producto
+                      </Typography>
                 )}
 
                 {params.id ? (
@@ -179,121 +178,123 @@ function NuevoProducto({ open, handleOpen }) {
                   </Button>
                 ) : (
                   <Button
-                    variant="contained"
-                    style={{
-                      backgroundColor: "#00AB55",
-                      borderRadius: 7,
-                      textTransform: "initial",
-                    }}
-                    onClick={submitHandler}
-                  >
-                    <AddIcon sx={{ mr: 0.5 }} />
-                    Crear
-                  </Button>
+                        variant="contained"
+                        style={{
+                          backgroundColor: "#00AB55",
+                          borderRadius: 7,
+                          textTransform: "initial",
+                        }}
+                        onClick={submitHandler}
+                      >
+                        <AddIcon sx={{ mr: 0.5 }} />
+                        Crear
+                      </Button>
                 )}
+                  
               </Box>
 
+  
               <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: 30,
-                }}
-              >
-                <TextField
-                  id="standard-search"
-                  label="Nombre del Producto"
-                  type="text"
-                  variant="standard"
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: 30,
+                  }}
+                >
+                  <TextField
+                    id="standard-search"
+                    label="Nombre del Producto"
+                    type="text"
+                    variant="standard"
                   //defaultValue={producto.name}
+                    //defaultValue={producto.name}
                   onChange={(e) =>
-                    setProducto({ ...producto, name: e.target.value })
-                  }
-                  value={producto.name}
-                />
-                <FormControl variant="standard">
-                  <InputLabel htmlFor="standard-adornment-amount">
-                    Precio del Producto
-                  </InputLabel>
-                  <Input
-                    id="standard-adornment-amount"
-                    onChange={(e) =>
-                      setProducto({ ...producto, price: e.target.value })
+                      setProducto({ ...producto, name: e.target.value })
                     }
-                    value={producto.price}
-                    startAdornment={
-                      <InputAdornment position="start">$</InputAdornment>
-                    }
+                    value={producto.name}
                   />
-                </FormControl>
+                  <FormControl variant="standard">
+                    <InputLabel htmlFor="standard-adornment-amount">
+                      Precio del Producto
+                    </InputLabel>
+                    <Input
+                      id="standard-adornment-amount"
+                      onChange={(e) =>
+                        setProducto({ ...producto, price: e.target.value })
+                      }
+                      value={producto.price}
+                      startAdornment={
+                        <InputAdornment position="start">$</InputAdornment>
+                      }
+                    />
+                  </FormControl>
 
-                <TextField
-                  id="standard-search"
-                  label="Fabricante del Producto"
-                  type="text"
-                  onChange={(e) =>
-                    setProducto({ ...producto, manufacturer: e.target.value })
-                  }
-                  value={producto.manufacturer}
-                  variant="standard"
-                />
-
-                <TextField
-                  id="standard-search"
-                  label="Descripción del Producto"
-                  type="text"
-                  onChange={(e) =>
-                    setProducto({ ...producto, description: e.target.value })
-                  }
-                  value={producto.description}
-                  variant="standard"
-                />
-
-                <FormControl variant="standard">
-                  <InputLabel id="standard-weight-helper-text">
-                    Peso del Producto
-                  </InputLabel>
-                  <Input
-                    id="standard-adornment-weight"
+                  <TextField
+                    
+                    label="Fabricante del Producto"
+                    type="text"
                     onChange={(e) =>
-                      setProducto({ ...producto, weight: e.target.value })
+                      setProducto({ ...producto, manufacturer: e.target.value })
                     }
-                    value={producto.weight}
-                    endAdornment={
-                      <InputAdornment position="end">Kg</InputAdornment>
-                    }
-                    aria-describedby="standard-weight-helper-text"
-                    inputProps={{
-                      "aria-label": "weight",
-                    }}
+                    value={producto.manufacturer}
+                    variant="standard"
                   />
-                </FormControl>
-                <TextField
-                  id="standard-search"
-                  label="Categoria del Producto"
-                  type="text"
-                  onChange={(e) =>
-                    setProducto({ ...producto, category: e.target.value })
-                  }
-                  value={producto.category}
-                  variant="standard"
-                />
-                <TextField
-                  id="standard-search"
-                  label="Unidades del Producto"
-                  type="number"
-                  onChange={(e) =>
-                    setProducto({ ...producto, numberUnits: e.target.value })
-                  }
-                  value={producto.numberUnits}
-                  variant="standard"
-                />
-              </div>
-            </Card>
-          </Box>
-        </Fade>
-      </Modal>
-      <Snackbar
+
+                  <TextField
+                      label="Descripción del Producto"
+                    type="text"
+                    onChange={(e) =>
+                      setProducto({ ...producto, description: e.target.value })
+                    }
+                    value={producto.description}
+                    variant="standard"
+                  />
+
+                  <FormControl variant="standard">
+                    <InputLabel id="standard-weight-helper-text">
+                      Peso del Producto
+                    </InputLabel>
+                    <Input
+                      id="standard-adornment-weight"
+                      onChange={(e) =>
+                        setProducto({ ...producto, weight: e.target.value })
+                      }
+                      value={producto.weight}
+                      endAdornment={
+                        <InputAdornment position="end">Kg</InputAdornment>
+                      }
+                      aria-describedby="standard-weight-helper-text"
+                      inputProps={{
+                        "aria-label": "weight",
+                      }}
+                    />
+                  </FormControl>
+                  <TextField
+                    
+                    label="Categoria del Producto"
+                    type="text"
+                    onChange={(e) =>
+                      setProducto({ ...producto, category: e.target.value })
+                    }
+                    value={producto.category}
+                    variant="standard"
+                  />
+                  <TextField
+                    
+                    label="Unidades del Producto"
+                    type="number"
+                    onChange={(e) =>
+                      setProducto({ ...producto, numberUnits: e.target.value })
+                    }
+                    value={producto.numberUnits}
+                    variant="standard"
+                  />
+                </div>
+              </Card>
+            </Box>
+          </Fade>
+        </Modal>
+        <Snackbar
         open={message.state}
         onClose={() => setMessage({ ...message, state: false })}
         message={message.message}
@@ -329,7 +330,6 @@ export default function Productos() {
             variant="h4"
             noWrap
             component="a"
-            href="#"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "flex" },
@@ -381,7 +381,7 @@ export default function Productos() {
           display: { md: "block" },
         }}
       ></Box>
-      <NuevoProducto open={open} handleOpen={handleOpen} />
+      <NuevoProducto open={open} setOpen={setOpen} handleOpen={handleOpen} />
     </div>
   );
 }

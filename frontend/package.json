@@ -19,7 +19,8 @@
       "/node_modules/",
       "/test/",
       "/src/api/",
-      "package.json"
+      "package.json",
+      "vite.config.js.**"
     ]
   },
   "dependencies": {

@@ -1,12 +1,11 @@
-import AdbIcon from "@mui/icons-material/Adb";
-import { Box, Button, Typography } from "@mui/material";
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import { Box, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Slide from "@mui/material/Slide";
 import Toolbar from "@mui/material/Toolbar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import React from "react";
-import ReceiptIcon from '@mui/icons-material/Receipt';
 import { NavLink } from "react-router-dom";
 function NavbarApp({ window }) {
   const pages = ["Facturacion", "Productos"];
@@ -79,6 +78,7 @@ function NavbarApp({ window }) {
                   {page}
                 </NavLink>
               ))}
+              
             </Box>
           </Toolbar>
         </Container>

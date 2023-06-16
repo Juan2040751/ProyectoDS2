@@ -8,14 +8,19 @@
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "jest",
-    "coverage": "jest --coverage --coverageDirectory test-coverage --testResultsProcessor jest-sonar-reporter",
+    "test": "jest --coverage",
     "sonar": "sonar-scanner"
   },
-  "jestSonar": {
-    "reportPath": "test-coverage/sonar",
-    "reportFile": "sonar-report.xml",
-    "indent": 4
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "testResultsProcessor": "jest-sonar-reporter",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/",
+      "/src/api/",
+      "package.json"
+    ]
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",

@@ -12,6 +12,9 @@ class Producto(models.Model):
     category = models.TextField(blank=True)
     numberUnits = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.title
+
     
     def __str__(self):
         return f"{self.name}"

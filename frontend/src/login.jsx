@@ -16,14 +16,17 @@ function Login() {
     const csrfToken = "my_csrf_token";
     axios.defaults.headers.common["X-CSRFToken"] = csrfToken;
 
-    axios
-      .post("http://localhost:8000/users/login", { username, password })
-      .then(({ data }) => {
-        const { id, username } = data;
-        localStorage.setItem("id", id);
-        localStorage.setItem("username", username);
-        navigate("/facturacion");
-      })
+    (async () => {
+      await axios
+        .post("http://localhost:8000/users/login", { username, password })
+        .then(({ data }) => {
+          console.log(data)
+          const { id, username } = data;
+          localStorage.setItem("id", id);
+          localStorage.setItem("username", username);
+          navigate("/facturacion");
+        });
+    })();
   };
 
   return (

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\tests\navbar.test.js">
+    <testCase name="pruebas interfaz de navbar Titulo de la pagina presente" duration="91"/>
+    <testCase name="pruebas interfaz de navbar Boton Facturacion presente" duration="102"/>
+    <testCase name="pruebas interfaz de navbar Boton Facturacion presente" duration="33"/>
+  </file>
+  <file path="C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\tests\facturacion.test.js">
+    <testCase name="pruebas interfaz de facturacion Titulo de la pagina presente" duration="268"/>
+    <testCase name="pruebas interfaz de facturacion Informacion del vendendor y cliente presente" duration="167"/>
+    <testCase name="pruebas interfaz de facturacion Boton para añadir productos funciona" duration="153"/>
+  </file>
+  <file path="C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\tests\productos.test.js">
+    <testCase name="pruebas interfaz de productos Titulo de la pagina presente" duration="89"/>
+    <testCase name="pruebas interfaz de productos Boton para añadir productos presente" duration="94"/>
+    <testCase name="pruebas interfaz de productos Boton para añadir productos funciona" duration="130"/>
+    <testCase name="pruebas interfaz de productos Formulario para añadir productos presente" duration="105"/>
+    <testCase name="pruebas interfaz de productos Boton para añadir un producto funciona" duration="355"/>
+    <testCase name="pruebas interfaz de productos Se puede editar el fabricante de un producto" duration="196"/>
+    <testCase name="pruebas interfaz de productos Se puede editar el fabricante de un producto" duration="101">
+      <failure message="TestingLibraryElementError: Unable to find an accessible element with the role &quot;button&quot; and name &quot;Actualizar&quot;"><![CDATA[TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "Actualizar"
+
+Here are the accessible roles:
+
+  button:
+
+  Name "Agregar Producto":
+  <button
+    class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+    style="background-color: rgb(0, 171, 85); border-radius: 7px; text-transform: initial;"
+    tabindex="0"
+    type="button"
+  />
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+<body
+  style=""
+>
+  <div>
+    <div
+      style="display: flex;"
+    >
+      <div
+        class="MuiBox-root css-ckhp5a"
+      >
+        <div
+          class="MuiBox-root css-16joauu"
+        >
+          <a
+            class="MuiTypography-root MuiTypography-h4 MuiTypography-noWrap css-11go0yy-MuiTypography-root"
+          >
+            Lista de Productos
+          </a>
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+            style="background-color: rgb(0, 171, 85); border-radius: 7px; text-transform: initial;"
+            tabindex="0"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-8jexgt-MuiSvgIcon-root"
+              data-testid="AddIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+              />
+            </svg>
+            Agregar Producto
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-z3gpg2"
+      />
+    </div>
+  </div>
+</body>
+    at Object.getElementError (C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\node_modules\@testing-library\dom\dist\config.js:37:19)
+    at C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\node_modules\@testing-library\dom\dist\query-helpers.js:76:38
+    at C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\node_modules\@testing-library\dom\dist\query-helpers.js:52:17
+    at C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\node_modules\@testing-library\dom\dist\query-helpers.js:95:19
+    at Object.getByRole (C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\tests\productos.test.js:91:32)
+    at Promise.then.completed (C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\node_modules\jest-circus\build\run.js:297:40)
+    at _runTest (C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\node_modules\jest-circus\build\run.js:135:9)
+    at _runTestsForDescribeBlock (C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\node_modules\jest-circus\build\run.js:130:9)
+    at run (C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+    </testCase>
+  </file>
+</testExecutions>

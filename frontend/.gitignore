@@ -9,6 +9,7 @@ lerna-debug.log*
 
 /backend/env/
 node_modules
+data
 dist
 dist-ssr
 *.local

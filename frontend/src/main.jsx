@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./app";
+import ListaProductos from "./components/list_products";
 import Facturacion from "./facturacion";
 import Login from "./login";
 import Productos from "./productos";
@@ -38,6 +39,22 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         element={
           <App>
             <Facturacion />
+          </App>
+        }
+      />
+      <Route
+        path="/lista-productos"
+        element={
+          <App>
+            <ListaProductos />
+          </App>
+        }
+      />
+      <Route
+        path="/productos/:id"
+        element={
+          <App>
+            <Productos />
           </App>
         }
       />

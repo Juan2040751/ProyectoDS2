@@ -75,7 +75,6 @@ function Facturacion() {
   const [products, setProducts] = useState([]);
   const createInvoice = async (e) => {
     e.preventDefault;
-
     await axios({
       method: "post",
       url: "http://127.0.0.1:8000/invoices/",

@@ -3,9 +3,9 @@
  */
 
 import '@testing-library/jest-dom';
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from 'react-router-dom';
 import NavbarApp from '../src/components/navbar';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 describe("pruebas interfaz de navbar", () => {
     beforeEach(() => {

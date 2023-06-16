@@ -1,5 +1,4 @@
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles/Login.css";
@@ -17,14 +16,16 @@ function Login() {
     axios.defaults.headers.common["X-CSRFToken"] = csrfToken;
 
     (async () => {
-      await axios
-        .post("http://localhost:8000/users/login", { username, password })
-        .then(({ data }) => {
-          const { id, username } = data;
-          localStorage.setItem("id", id);
-          localStorage.setItem("username", username);
-          navigate("/facturacion");
-        });
+      await axios({
+        method: "post",
+        url: "http://localhost:8000/users/login",
+        data: { username, password },
+      }).then(({ data }) => {
+        const { id, username } = data;
+        localStorage.setItem("id", id);
+        localStorage.setItem("username", username);
+        navigate("/facturacion");
+      });
     })();
   };
 

@@ -6,8 +6,8 @@ import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import Productos from "../src/productos";
 import { BrowserRouter } from 'react-router-dom';
+import Productos from "../src/productos";
 
 
 
@@ -36,7 +36,6 @@ describe("pruebas interfaz de productos", () => {
         expect(screen.getByLabelText("Unidades del Producto")).toBeInTheDocument();
         expect(screen.getByLabelText("Descripción del Producto")).toBeInTheDocument();
         expect(screen.getByLabelText("Fabricante del Producto")).toBeInTheDocument();
-
         expect(screen.getByLabelText("Nombre del Producto").value).toBe("");
         expect(screen.getByLabelText("Precio del Producto").value).toBe("0");
         expect(screen.getByLabelText("Unidades del Producto").value).toBe("");
@@ -62,7 +61,6 @@ describe("pruebas interfaz de productos", () => {
         fireEvent.change(screen.getByLabelText("Fabricante del Producto"), { target: { value: "Fabricante de prueba" } });
         fireEvent.change(screen.getByLabelText("Categoria del Producto"), { target: { value: "Categoria de prueba" } });
         fireEvent.change(screen.getByRole("textbox", { name: /weight/i }), { target: { value: "100" } });
-
         fireEvent.click(screen.getByRole("button", { name: "Crear" }));
     });
 
@@ -83,10 +81,7 @@ describe("pruebas interfaz de productos", () => {
         expect(alert).toBeInTheDocument();
         server.resetHandlers()
         server.close()
-
     });
-
-
 });
 
 

@@ -19,7 +19,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getProduct, updateProduct } from "./api/products.api";
 
-export function NuevoProducto({ open, handleOpen }) {
+export function NuevoProducto({ open, setOpen, handleOpen }) {
   const [producto, setProducto] = useState({
     name: "",
     description: "",
@@ -79,7 +79,7 @@ export function NuevoProducto({ open, handleOpen }) {
   }, []);
 
   {
-    params.id && (open = true);
+    params.id && setOpen(true);
   }
 
   return (
@@ -377,7 +377,7 @@ export default function Productos() {
           display: { md: "block" },
         }}
       ></Box>
-      <NuevoProducto open={open} handleOpen={handleOpen} />
+      <NuevoProducto open={open} setOpen={setOpen} handleOpen={handleOpen} />
     </div>
   );
 }

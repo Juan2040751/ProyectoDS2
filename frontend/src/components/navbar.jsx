@@ -5,7 +5,6 @@ import Container from "@mui/material/Container";
 import Slide from "@mui/material/Slide";
 import Toolbar from "@mui/material/Toolbar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
-import { Link } from "react-router-dom"; // Importar el componente Link de React Router
 import React from "react";
 import { NavLink } from "react-router-dom";
 function NavbarApp({ window }) {
@@ -60,14 +59,20 @@ function NavbarApp({ window }) {
               }}
             >
               {pages.map((page) => (
-                <Button
+                <NavLink
                   key={page}
-                  sx={{
-                    my: 2,
-                    color: "black",
-                    display: "block",
-                    fontSize: 18,
-                    fontWeight: "medium",
+                  to={"/" + page.toLowerCase()}
+                  style={({ isActive, isPending }) => {
+                    return {
+                      textDecoration: "none",
+                      padding: "1%",
+                      color: isActive? "white":"black",
+                      display: "flex",
+                      fontSize: 18,
+                      fontWeight: "medium",
+                      backgroundColor: isActive? "#00AB55":"transparent",
+                      borderRadius: 7,
+                    };
                   }}
                 >
                   {page}
@@ -83,4 +88,3 @@ function NavbarApp({ window }) {
 }
 
 export default NavbarApp;
-

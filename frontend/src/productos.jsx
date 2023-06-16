@@ -37,7 +37,7 @@ export function NuevoProducto({ open, setOpen, handleOpen }) {
   const params = useParams();
   const navigate = useNavigate();
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
 
     if (params.id) {
@@ -144,25 +144,6 @@ export function NuevoProducto({ open, setOpen, handleOpen }) {
                     Actualizar Producto
                   </Typography>
                 ) : (
-                    {params.id ? (
-                  <Typography
-                    variant="h4"
-                    noWrap
-                    component="a"
-                    href="#"
-                    sx={{
-                      mr: 0,
-                      display: { xs: "flex", md: "flex" },
-                      fontFamily: "sans-serif",
-                      fontWeight: 700,
-                      fontSize: 25,
-                      color: "black",
-                      textDecoration: "none",
-                    }}
-                  >
-                    Actualizar Producto
-                  </Typography>
-                ) : (
                   <Typography
                         variant="h4"
                         noWrap
@@ -196,22 +177,6 @@ export function NuevoProducto({ open, setOpen, handleOpen }) {
                     Actualizar
                   </Button>
                 ) : (
-                    )}
-
-                {params.id ? (
-                  <Button
-                    variant="contained"
-                    style={{
-                      backgroundColor: "orange",
-                      borderRadius: 7,
-                      textTransform: "initial",
-                    }}
-                    onClick={submitHandler}
-                  >
-                    <AddIcon sx={{ mr: 0.5 }} />
-                    Actualizar
-                  </Button>
-                ) : (
                   <Button
                         variant="contained"
                         style={{
@@ -225,7 +190,7 @@ export function NuevoProducto({ open, setOpen, handleOpen }) {
                         Crear
                       </Button>
                 )}
-                  )}
+                  
               </Box>
 
   

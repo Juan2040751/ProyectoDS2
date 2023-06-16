@@ -7,7 +7,6 @@ import Facturacion from "./facturacion";
 import Login from "./login";
 import Productos from "./productos";
 import Register from "./registro";
-import Login from "./login";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>

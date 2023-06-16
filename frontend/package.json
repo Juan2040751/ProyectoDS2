@@ -30,6 +30,7 @@
     "@mui/material": "^5.12.2",
     "@testing-library/user-event": "^14.4.3",
     "axios": "^1.4.0",
+    "axios-mock-adapter": "^1.21.5",
     "bootstrap": "^5.2.3",
     "esbuild-wasm": "^0.17.18",
     "jsdom": "^22.0.0",

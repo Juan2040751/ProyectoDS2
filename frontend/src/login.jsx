@@ -20,7 +20,6 @@ function Login() {
       await axios
         .post("http://localhost:8000/users/login", { username, password })
         .then(({ data }) => {
-          console.log(data)
           const { id, username } = data;
           localStorage.setItem("id", id);
           localStorage.setItem("username", username);

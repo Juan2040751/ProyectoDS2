@@ -70,7 +70,7 @@ function Facturacion() {
     manufacturer: "",
     quantity: "",
     total: 0,
-    weight: 0, 
+    weight: 0,
   });
   const [products, setProducts] = useState([]);
   const createInvoice = async (e) => {
@@ -80,12 +80,14 @@ function Facturacion() {
       url: "http://127.0.0.1:8000/invoices/",
       data: {
         productos: products.map((prod) => {
-          const { id, quantity, weight, manufacturer, name, price } = prod;
+          const { id, quantity } = prod;
           return { producto: id, cantidad: quantity };
         }),
         cliente: cliente.id,
         vendedor: vendedor.id,
       },
+    }).then(() => {
+      setProducts([]);
     });
   };
 
@@ -364,5 +366,3 @@ function Facturacion() {
 }
 
 export default Facturacion;
-
-

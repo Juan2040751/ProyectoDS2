@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./app";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import App from "./app";
+import ListaProductos from "./components/list_products";
+import Facturacion from "./facturacion";
+import Login from "./login";
 import Productos from "./productos";
 import Register from "./registro";
 import Login from "./login";
-import ListaProductos from "./components/list_products"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -23,7 +25,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               </div>
             </div>
           </App>
-        }/>
+        }
+      />
       <Route
         path="/productos"
         element={
@@ -33,10 +36,18 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         }
       />
       <Route
+        path="/facturacion"
+        element={
+          <App>
+            <Facturacion />
+          </App>
+        }
+      />
+      <Route
         path="/lista-productos"
         element={
           <App>
-            < ListaProductos />
+            <ListaProductos />
           </App>
         }
       />
@@ -44,7 +55,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         path="/productos/:id"
         element={
           <App>
-            < Productos />
+            <Productos />
           </App>
         }
       />

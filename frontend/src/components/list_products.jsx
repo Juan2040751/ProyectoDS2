@@ -1,13 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { getAllProducts } from "../api/products.api";
 import { ProductCard } from "./ProductCard";
 
-export default function listProducts(){
-
+export default function ListProducts(){
     const [products, setProducts] = useState([]);
-
     useEffect(() => {
-
         async function loadProducts(){
             const res = await getAllProducts();
             setProducts(res.data);

@@ -1,5 +1,5 @@
-import AdbIcon from "@mui/icons-material/Adb";
-import { Box, Button, Typography } from "@mui/material";
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import { Box, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Slide from "@mui/material/Slide";
@@ -7,13 +7,10 @@ import Toolbar from "@mui/material/Toolbar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import { Link } from "react-router-dom"; // Importar el componente Link de React Router
 import React from "react";
-
+import { NavLink } from "react-router-dom";
 function NavbarApp({ window }) {
-  const pages = [
-    { name: "Productos", path: "/productos" },
-    { name: "Pricing", path: "/pricing" },
-    { name: "Blog", path: "/blog" },
-  ];
+  const pages = ["Facturacion", "Productos"];
+
 
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
@@ -31,9 +28,9 @@ function NavbarApp({ window }) {
                 marginLeft: "2%",
               }}
             >
-              <AdbIcon
+              <ReceiptIcon
                 sx={{
-                  display: { xs: "none", md: "flex" },
+                  display: { xs: "none", md: "flex", color: "#00AB55" },
                   mr: 1,
                   fontSize: 40,
                 }}
@@ -41,8 +38,7 @@ function NavbarApp({ window }) {
               <Typography
                 variant="h4"
                 noWrap
-                component={Link} // Utilizar el componente Link para el logotipo
-                to="/"
+                component="a"
                 sx={{
                   mr: 2,
                   display: { xs: "flex", md: "flex" },
@@ -52,7 +48,7 @@ function NavbarApp({ window }) {
                   textDecoration: "none",
                 }}
               >
-                LOGO
+                Turbo
               </Typography>
             </Box>
 
@@ -65,9 +61,7 @@ function NavbarApp({ window }) {
             >
               {pages.map((page) => (
                 <Button
-                  key={page.name}
-                  component={Link} // Utilizar el componente Link para los botones de navegación
-                  to={page.path}
+                  key={page}
                   sx={{
                     my: 2,
                     color: "black",
@@ -76,9 +70,10 @@ function NavbarApp({ window }) {
                     fontWeight: "medium",
                   }}
                 >
-                  {page.name}
-                </Button>
+                  {page}
+                </NavLink>
               ))}
+              
             </Box>
           </Toolbar>
         </Container>

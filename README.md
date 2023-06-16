@@ -48,7 +48,7 @@ Tecnologías utilizadas para la ejecución del trabajo en equipo:
 Se utilizó Docker Compose para la creación de tres contenedores o servicios: 
 - **turbo_db:**  en esta se utilizó la imagen "postgres:15-alpine" con la cual  se creó un contenedor de la base de datos PostgreSQL.
 - **turbo_frontend:** esta se construyo a partir de un Dockerfile ubicado en el directorio *frontend* de manera que este directorio quedara montado en este contenedor.
--**turbo_backend:** esta se construyo a partir de un Dockerfile ubicado en el directorio *backend*  de manera que este directorio quedara montado en este contenedor.
+- **turbo_backend:** esta se construyo a partir de un Dockerfile ubicado en el directorio *backend*  de manera que este directorio quedara montado en este contenedor.
 
 Aquí podemos observar el código utilizado para esta configuración, aquí mismo se podrán apreciar los puertos que se utilizan en cada contenedor y a la vez algunas variables de entorno:
 

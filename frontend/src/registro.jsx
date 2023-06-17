@@ -18,9 +18,8 @@ function Register() {
 
     axios
       .post("http://localhost:8000/users/register", { username, email, password, confirmation })
-      .then((response) => {
-        console.log(response.data);
-        //redirigir a la página de inicio de sesión
+      .then(() => {
+        navigate("/facturacion");
       })
       .catch((error) => {
         console.log(error.response.data);

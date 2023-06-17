@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 import json
 
 # Create your views here.
-
+@csrf_exempt
 def register(request):
     if request.method == "POST":
         try:
@@ -37,7 +37,7 @@ def register(request):
     else:
         return JsonResponse({"message": "Only POST requests are allowed"}, status=405)
     
-
+@csrf_exempt
 def login_view(request):
     if request.method == "POST":
         try:
@@ -53,7 +53,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return JsonResponse({"message": "Login successful"})
+            return JsonResponse({"message": "Login successful", "id": user.id, "username": user.username})
         else:
             return JsonResponse({"message": "Invalid username and/or password."})
 

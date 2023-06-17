@@ -3,15 +3,15 @@
  */
 
 import '@testing-library/jest-dom';
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import MockAdapter from "axios-mock-adapter";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { BrowserRouter } from 'react-router-dom';
+import { getAllProducts } from '../src/api/products.api';
+import ListProducts from '../src/components/list_products';
 import Productos from "../src/productos";
-
-
-
-
+import axios from 'axios';
 describe("pruebas interfaz de productos", () => {
 
     beforeEach(() => {
@@ -85,3 +85,38 @@ describe("pruebas interfaz de productos", () => {
 });
 
 
+jest.mock('../src/api/products.api', () => ({
+    getAllProducts: jest.fn(),
+}));
+
+describe('Pruebas interfaz listProducts', () => {
+    test('Muestra correctamente la lista de productos', async () => {
+        const productsMock = [
+            {
+                id: 1,
+                name: 'Producto 1',
+                description: 'Descripción del producto 1',
+                price: 10.99,
+                manufacturer: 'Fabricante 1',
+                weight: '1 kg',
+                category: 'Categoría 1',
+                numberUnits: 5,
+            }
+        ];
+        getAllProducts.mockResolvedValueOnce({ data: productsMock });
+
+        render(<BrowserRouter><ListProducts /></BrowserRouter>);
+        let axiosMock;
+        axiosMock = new MockAdapter(axios);
+        axiosMock.onDelete("http://127.0.0.1:8000/products/1").reply(200);
+        axiosMock.onPut("http://127.0.0.1:8000/products/1").reply(200);
+        await waitFor(() => {
+            productsMock.forEach((product) => {
+                expect(screen.getByText(product.name)).toBeInTheDocument();
+                fireEvent.click(screen.getAllByRole("button", { name: "Eliminar" })[0]);
+                fireEvent.click(screen.getAllByRole("button", { name: "Actualizar" })[0]);
+            });
+        });
+       
+    });
+});

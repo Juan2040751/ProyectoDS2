@@ -46,7 +46,6 @@ describe('Pruebas interfaz Login', () => {
       expect(axiosMock.history.post.length).toBe(1);
       expect(axiosMock.history.post[0].url).toBe('http://localhost:8000/users/login');
       expect(JSON.parse(axiosMock.history.post[0].data)).toEqual({ username: 'Juan Jose', password: '1234' });
-      // Agrega aquí las demás expectativas de acuerdo a tu lógica de negocio
     });
   });
 });

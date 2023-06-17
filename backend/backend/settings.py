@@ -15,11 +15,9 @@ from pathlib import Path
 import dj_database_url
 
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DATABASE_URL = "postgres://dbtienda_user:TVxlCs8Wmwkv7Y4LpjtOVVmPYlSbjZyt@dpg-ci571adgkuvgpfelts7g-a.oregon-postgres.render.com/dbtienda"
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -111,9 +109,27 @@ DATABASES = {
     )
 }
 """
+
 DATABASES = {
-    'default': dj_database_url.config(default=DATABASE_URL,conn_max_age=1800)
+    'default': {}
 }
+
+# Configuración 1: Utilizando variables de entorno
+if os.environ.get('DB_NAME'):
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
+    }
+else:
+    # Configuración 2: Utilizando dj_database_url.config()
+    DATABASES['default'] = dj_database_url.config(
+        default='postgresql://postgres:postgres@localhost:5432/tienda',
+        conn_max_age=600
+    )
 
 
 # Password validation
@@ -151,12 +167,12 @@ USE_TZ = True
 # This setting tells Django at which URL static files are going to be served to the user.
 # Here, they well be accessible at your-domain.onrender.com/static/...
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # Following settings only make sense on production and may break development environments.
 if not DEBUG:
     # Tell Django to copy statics to the `staticfiles` directory
     # in your application directory on Render.
-    
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
     # Turn on WhiteNoise storage backend that takes care of compressing static files
     # and creating unique names for each version so they can safely be cached forever.
@@ -167,9 +183,8 @@ if not DEBUG:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS=True
-
 CORS_ALLOWED_ORIGINS = [
-    #"http://localhost:5173"
+    "http://localhost:5173"
 ]
 
 REST_FRAMEWORK = {

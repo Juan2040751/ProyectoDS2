@@ -129,7 +129,7 @@ if os.environ.get('DB_NAME'):
 else:
     # Configuración 2: Utilizando dj_database_url.config()
     DATABASES['default'] = dj_database_url.config(
-        default='postgresql://postgres:postgres@localhost:5432/tienda',
+        default=DATABASE_URL,
         conn_max_age=600
     )
 

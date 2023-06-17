@@ -111,27 +111,9 @@ DATABASES = {
     )
 }
 """
-
 DATABASES = {
-    'default': {}
+    'default': dj_database_url.config(default=DATABASE_URL,conn_max_age=1800)
 }
-
-# Configuración 1: Utilizando variables de entorno
-if os.environ.get('DB_NAME'):
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
-    }
-else:
-    # Configuración 2: Utilizando dj_database_url.config()
-    DATABASES['default'] = dj_database_url.config(
-        default=DATABASE_URL,
-        conn_max_age=600
-    )
 
 
 # Password validation
@@ -185,6 +167,7 @@ if not DEBUG:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS=True
+
 CORS_ALLOWED_ORIGINS = [
     #"http://localhost:5173"
 ]
